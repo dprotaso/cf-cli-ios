@@ -8,10 +8,20 @@
 
 #include <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT void GoCfiosLogin(NSString* name, NSString* password);
+FOUNDATION_EXPORT BOOL GoCfiosApps(NSData** ret0_, NSError** error);
 
-FOUNDATION_EXPORT NSString* GoCfiosOrgs();
+FOUNDATION_EXPORT void GoCfiosInit(NSString* path);
 
-FOUNDATION_EXPORT void GoCfiosSetAPI(NSString* endpoint, BOOL disableSSL);
+FOUNDATION_EXPORT BOOL GoCfiosLogin(NSString* name, NSString* password, NSError** error);
+
+FOUNDATION_EXPORT BOOL GoCfiosOrgs(NSData** ret0_, NSError** error);
+
+FOUNDATION_EXPORT BOOL GoCfiosSetAPI(NSString* endpoint, BOOL disableSSL, NSError** error);
+
+FOUNDATION_EXPORT BOOL GoCfiosSpaces(NSData** ret0_, NSError** error);
+
+FOUNDATION_EXPORT BOOL GoCfiosTargetOrg(NSString* orgName, NSError** error);
+
+FOUNDATION_EXPORT BOOL GoCfiosTargetSpace(NSString* spaceName, NSError** error);
 
 #endif
