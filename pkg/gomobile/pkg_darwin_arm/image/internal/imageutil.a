@@ -1,0 +1,123 @@
+!<arch>
+__.PKGDEF       0           0     0     644     9209      `
+go object darwin arm go1.5rc1 X:none
+build id "2369c03882406fe097e89cfa8a53095ae7cb808c"
+
+$$
+package imageutil
+	import runtime "runtime"
+	import image "image"
+	type @"image".Point struct { X int; Y int }
+	func (@"image".pÂ·2 @"image".Point) Add (@"image".qÂ·3 @"image".Point) (? @"image".Point) { return (@"image".Point{ X:@"image".pÂ·2.X + @"image".qÂ·3.X, Y:@"image".pÂ·2.Y + @"image".qÂ·3.Y }) }
+	func (@"image".pÂ·2 @"image".Point) Div (@"image".kÂ·3 int) (? @"image".Point) { return (@"image".Point{ X:@"image".pÂ·2.X / @"image".kÂ·3, Y:@"image".pÂ·2.Y / @"image".kÂ·3 }) }
+	func (@"image".pÂ·2 @"image".Point) Eq (@"image".qÂ·3 @"image".Point) (? bool) { return @"image".pÂ·2 == @"image".qÂ·3 }
+	func (@"image".pÂ·2 @"image".Point) In (@"image".rÂ·3 @"image".Rectangle) (? bool) { return @"image".rÂ·3.Min.X <= @"image".pÂ·2.X && @"image".pÂ·2.X < @"image".rÂ·3.Max.X && @"image".rÂ·3.Min.Y <= @"image".pÂ·2.Y && @"image".pÂ·2.Y < @"image".rÂ·3.Max.Y }
+	func (@"image".pÂ·2 @"image".Point) Mod (@"image".rÂ·3 @"image".Rectangle) (? @"image".Point)
+	func (@"image".pÂ·2 @"image".Point) Mul (@"image".kÂ·3 int) (? @"image".Point) { return (@"image".Point{ X:@"image".pÂ·2.X * @"image".kÂ·3, Y:@"image".pÂ·2.Y * @"image".kÂ·3 }) }
+	func (@"image".pÂ·2 @"image".Point) String () (? string)
+	func (@"image".pÂ·2 @"image".Point) Sub (@"image".qÂ·3 @"image".Point) (? @"image".Point) { return (@"image".Point{ X:@"image".pÂ·2.X - @"image".qÂ·3.X, Y:@"image".pÂ·2.Y - @"image".qÂ·3.Y }) }
+	import color "image/color" // indirect
+	type @"image/color".Color interface { RGBA() (@"image/color".r uint32, @"image/color".g uint32, @"image/color".b uint32, @"image/color".a uint32) }
+	type @"image/color".Model interface { Convert(@"image/color".c @"image/color".Color) (? @"image/color".Color) }
+	type @"image".Rectangle struct { Min @"image".Point; Max @"image".Point }
+	func (@"image".rÂ·2 @"image".Rectangle) Add (@"image".pÂ·3 @"image".Point) (? @"image".Rectangle) { return (@"image".Rectangle{ Min:(@"image".Point{ X:@"image".rÂ·2.Min.X + @"image".pÂ·3.X, Y:@"image".rÂ·2.Min.Y + @"image".pÂ·3.Y }), Max:(@"image".Point{ X:@"image".rÂ·2.Max.X + @"image".pÂ·3.X, Y:@"image".rÂ·2.Max.Y + @"image".pÂ·3.Y }) }) }
+	func (@"image".rÂ·2 @"image".Rectangle) At (@"image".xÂ·3 int, @"image".yÂ·4 int) (? @"image/color".Color) { if (@"image".Point{ X:@"image".xÂ·3, Y:@"image".yÂ·4 }).In(@"image".rÂ·2) { return @"image/color".Opaque }; return @"image/color".Transparent }
+	func (@"image".rÂ·2 @"image".Rectangle) Bounds () (? @"image".Rectangle) { return @"image".rÂ·2 }
+	func (@"image".rÂ·2 @"image".Rectangle) Canon () (? @"image".Rectangle) { if @"image".rÂ·2.Max.X < @"image".rÂ·2.Min.X { @"image".rÂ·2.Min.X, @"image".rÂ·2.Max.X = @"image".rÂ·2.Max.X, @"image".rÂ·2.Min.X }; if @"image".rÂ·2.Max.Y < @"image".rÂ·2.Min.Y { @"image".rÂ·2.Min.Y, @"image".rÂ·2.Max.Y = @"image".rÂ·2.Max.Y, @"image".rÂ·2.Min.Y }; return @"image".rÂ·2 }
+	func (@"image".rÂ·2 @"image".Rectangle) ColorModel () (? @"image/color".Model) { return @"image/color".Alpha16Model }
+	func (@"image".rÂ·2 @"image".Rectangle) Dx () (? int) { return @"image".rÂ·2.Max.X - @"image".rÂ·2.Min.X }
+	func (@"image".rÂ·2 @"image".Rectangle) Dy () (? int) { return @"image".rÂ·2.Max.Y - @"image".rÂ·2.Min.Y }
+	func (@"image".rÂ·2 @"image".Rectangle) Empty () (? bool) { return @"image".rÂ·2.Min.X >= @"image".rÂ·2.Max.X || @"image".rÂ·2.Min.Y >= @"image".rÂ·2.Max.Y }
+	func (@"image".rÂ·2 @"image".Rectangle) Eq (@"image".sÂ·3 @"image".Rectangle) (? bool) { return @"image".rÂ·2 == @"image".sÂ·3 || @"image".rÂ·2.Empty() && @"image".sÂ·3.Empty() }
+	func (@"image".rÂ·2 @"image".Rectangle) In (@"image".sÂ·3 @"image".Rectangle) (? bool) { if @"image".rÂ·2.Empty() { return true }; return @"image".sÂ·3.Min.X <= @"image".rÂ·2.Min.X && @"image".rÂ·2.Max.X <= @"image".sÂ·3.Max.X && @"image".sÂ·3.Min.Y <= @"image".rÂ·2.Min.Y && @"image".rÂ·2.Max.Y <= @"image".sÂ·3.Max.Y }
+	func (@"image".rÂ·2 @"image".Rectangle) Inset (@"image".nÂ·3 int) (? @"image".Rectangle)
+	func (@"image".rÂ·2 @"image".Rectangle) Intersect (@"image".sÂ·3 @"image".Rectangle) (? @"image".Rectangle)
+	func (@"image".rÂ·2 @"image".Rectangle) Overlaps (@"image".sÂ·3 @"image".Rectangle) (? bool)
+	func (@"image".rÂ·2 @"image".Rectangle) Size () (? @"image".Point) { return (@"image".Point{ X:@"image".rÂ·2.Max.X - @"image".rÂ·2.Min.X, Y:@"image".rÂ·2.Max.Y - @"image".rÂ·2.Min.Y }) }
+	func (@"image".rÂ·2 @"image".Rectangle) String () (? string)
+	func (@"image".rÂ·2 @"image".Rectangle) Sub (@"image".pÂ·3 @"image".Point) (? @"image".Rectangle) { return (@"image".Rectangle{ Min:(@"image".Point{ X:@"image".rÂ·2.Min.X - @"image".pÂ·3.X, Y:@"image".rÂ·2.Min.Y - @"image".pÂ·3.Y }), Max:(@"image".Point{ X:@"image".rÂ·2.Max.X - @"image".pÂ·3.X, Y:@"image".rÂ·2.Max.Y - @"image".pÂ·3.Y }) }) }
+	func (@"image".rÂ·2 @"image".Rectangle) Union (@"image".sÂ·3 @"image".Rectangle) (? @"image".Rectangle)
+	type @"image/color".RGBA struct { R uint8; G uint8; B uint8; A uint8 }
+	func (@"image/color".cÂ·5 @"image/color".RGBA) RGBA () (@"image/color".rÂ·1 uint32, @"image/color".gÂ·2 uint32, @"image/color".bÂ·3 uint32, @"image/color".aÂ·4 uint32) { @"image/color".rÂ·1 = uint32(@"image/color".cÂ·5.R); @"image/color".rÂ·1 |= @"image/color".rÂ·1 << 0x8; @"image/color".gÂ·2 = uint32(@"image/color".cÂ·5.G); @"image/color".gÂ·2 |= @"image/color".gÂ·2 << 0x8; @"image/color".bÂ·3 = uint32(@"image/color".cÂ·5.B); @"image/color".bÂ·3 |= @"image/color".bÂ·3 << 0x8; @"image/color".aÂ·4 = uint32(@"image/color".cÂ·5.A); @"image/color".aÂ·4 |= @"image/color".aÂ·4 << 0x8; return  }
+	type @"image".Image interface { At(@"image".x int, @"image".y int) (? @"image/color".Color); Bounds() (? @"image".Rectangle); ColorModel() (? @"image/color".Model) }
+	type @"image".RGBA struct { Pix []uint8; Stride int; Rect @"image".Rectangle }
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0x1") At (@"image".xÂ·3 int, @"image".yÂ·4 int) (? @"image/color".Color)
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0x1") Bounds () (? @"image".Rectangle) { return @"image".pÂ·2.Rect }
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0x1") ColorModel () (? @"image/color".Model) { return @"image/color".RGBAModel }
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0x1") Opaque () (? bool)
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0x1") PixOffset (@"image".xÂ·3 int, @"image".yÂ·4 int) (? int) { return (@"image".yÂ·4 - @"image".pÂ·2.Rect.Min.Y) * @"image".pÂ·2.Stride + (@"image".xÂ·3 - @"image".pÂ·2.Rect.Min.X) * 0x4 }
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0x1") RGBAAt (@"image".xÂ·3 int, @"image".yÂ·4 int) (? @"image/color".RGBA)
+	func (@"image".pÂ·1 *@"image".RGBA "esc:0x1") Set (@"image".xÂ·2 int, @"image".yÂ·3 int, @"image".cÂ·4 @"image/color".Color)
+	func (@"image".pÂ·1 *@"image".RGBA "esc:0x1") SetRGBA (@"image".xÂ·2 int, @"image".yÂ·3 int, @"image".cÂ·4 @"image/color".RGBA)
+	func (@"image".pÂ·2 *@"image".RGBA "esc:0xa") SubImage (@"image".rÂ·3 @"image".Rectangle) (? @"image".Image)
+	type @"image".YCbCrSubsampleRatio int
+	func (@"image".sÂ·2 @"image".YCbCrSubsampleRatio) String () (? string)
+	type @"image/color".YCbCr struct { Y uint8; Cb uint8; Cr uint8 }
+	func (@"image/color".cÂ·5 @"image/color".YCbCr) RGBA () (? uint32, ? uint32, ? uint32, ? uint32)
+	type @"image".YCbCr struct { Y []uint8; Cb []uint8; Cr []uint8; YStride int; CStride int; SubsampleRatio @"image".YCbCrSubsampleRatio; Rect @"image".Rectangle }
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") At (@"image".xÂ·3 int, @"image".yÂ·4 int) (? @"image/color".Color)
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") Bounds () (? @"image".Rectangle) { return @"image".pÂ·2.Rect }
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") COffset (@"image".xÂ·3 int, @"image".yÂ·4 int) (? int)
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") ColorModel () (? @"image/color".Model) { return @"image/color".YCbCrModel }
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") Opaque () (? bool) { return true }
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0xa") SubImage (@"image".rÂ·3 @"image".Rectangle) (? @"image".Image)
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") YCbCrAt (@"image".xÂ·3 int, @"image".yÂ·4 int) (? @"image/color".YCbCr)
+	func (@"image".pÂ·2 *@"image".YCbCr "esc:0x1") YOffset (@"image".xÂ·3 int, @"image".yÂ·4 int) (? int) { return (@"image".yÂ·4 - @"image".pÂ·2.Rect.Min.Y) * @"image".pÂ·2.YStride + (@"image".xÂ·3 - @"image".pÂ·2.Rect.Min.X) }
+	func @"".DrawYCbCr (@"".dstÂ·2 *@"image".RGBA "esc:0x1", @"".rÂ·3 @"image".Rectangle, @"".srcÂ·4 *@"image".YCbCr "esc:0x1", @"".spÂ·5 @"image".Point) (@"".okÂ·1 bool)
+	func @"".init ()
+	type @"image/color".Alpha16 struct { A uint16 }
+	func (@"image/color".cÂ·5 @"image/color".Alpha16) RGBA () (@"image/color".rÂ·1 uint32, @"image/color".gÂ·2 uint32, @"image/color".bÂ·3 uint32, @"image/color".aÂ·4 uint32) { @"image/color".aÂ·4 = uint32(@"image/color".cÂ·5.A); return @"image/color".aÂ·4, @"image/color".aÂ·4, @"image/color".aÂ·4, @"image/color".aÂ·4 }
+	var @"image/color".Opaque @"image/color".Alpha16
+	var @"image/color".Transparent @"image/color".Alpha16
+	var @"image/color".Alpha16Model @"image/color".Model
+	var @"image/color".RGBAModel @"image/color".Model
+	var @"image/color".YCbCrModel @"image/color".Model
+
+$$
+ _go_.o          0           0     0     644     8836      `
+go object darwin arm go1.5rc1 X:none
+
+!
+  go13ldimage.a ş"".DrawYCbCr  °5  °5šå¼¹Ÿå à RáG š˜à-å¸@åœ€å°På   ã   ã  å˜å @à  á< å¨ å˜å @à  á8 å¤ å˜å0@à¬ å˜å @à$ å,•å Qã Ê  QãÃ  (0åH@å( å$å Pá¬  
+ ˜å(åà ˜å0˜å Qá´  Š Bà0Cà @˜å  Sã   
+@„àl åp0åh@å4 •åHå  Aà$•å‘  à´å0 •åAà €à å4 •åHå  Aà(•å‘  à´å0 •åAàÀ€à<@å8å Táy  
+ á å0•å Rá  :   ëı¼ú÷ •å ÑçhŸå‘  à å…â0‘å  á \á  :   ëı¼ú÷ ‘å Ñç€ ã @àX å…â0‘å  á \á  :   ëı¼ú÷ ‘å Ñç€ ã @àŸå’ àå €à@x áX åğŸå‘  àå  Aà áà'Ÿå’à @à@h áX åĞŸå‘  àå €à@8 á  WãV  ª p ã  VãO  ª ` ã  SãH  ª 0 ã  ã„àh â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àh â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àh â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àh â å Qá  :   ëı¼ú÷  å €àÿ ãÿâ Àå ã@„à å ã`€à ãÀŒà`å8å Tá…ÿÿ( å ã0€àH å ã €à(0åH å( å$å PáRÿÿ  ã¼ Íå˜ğäÿ SãµÿÿÚÿ0 ã³ÿÿêÿ Vã®ÿÿÚÿ` ã¬ÿÿêÿ Wã§ÿÿÚÿp ã¥ÿÿê   ëı¼ú÷ QãÅ  00å@@å0 å$å Páæÿÿ
+ ˜å0åà ˜å0˜å Qá¶  Š Bà0Cà @˜å  Sã   
+@„à„ åˆ0å€@å4 •å@å  Aà$•å‘  à´å0 •åAà €à å00•å4 •å@å  Aà(•å‘  àÃ á CàÂ á @àP å´Àå<@å8å Tá~  
+Ì á LàÁ  áPå`€à á å0•å Rá  :   ëı¼ú÷ •å Ñç0Ÿå‘  à å…â0‘å  á Vá  :   ëı¼ú÷ ‘å Ñç€ ã @à` å…â0‘å  á Vá  :   ëı¼ú÷ ‘å Ñç€ ã @àÌŸå’ àå €à@x á` å¸Ÿå‘  àå  Aà á¨$Ÿå’à @à@h á` å˜Ÿå‘  àå €à@8 á  WãP  ª p ã  VãI  ª ` ã  SãB  ª 0 ã  ã„à€ â å Qá  :   ëı¼ú÷  åÿ â Àç ã„à€ â å Qá  :   ëı¼ú÷  åÿ â Àç ã„à€ â å Qá  :   ëı¼ú÷  åÿ â Àç ã„à€ â å Qá  :   ëı¼ú÷  å €àÿ ãÿâ Àå ã@„à ãÀŒà å ã0€à0å8å Tá€ÿÿ0 å ã €à@ å ã0€à0 å@0åIÿÿêÿ Sã»ÿÿÚÿ0 ã¹ÿÿêÿ Vã´ÿÿÚÿ` ã²ÿÿêÿ Wã­ÿÿÚÿp ã«ÿÿê   ëı¼ú÷   ã¼ Íå˜ğä QãÓ  ,0åD@å, å$å Páÿÿ
+ ˜å,åà ˜å0˜å QáÄ  Š Bà0Cà @˜å  Sã   
+@„àx å|0åt@å4 •åDå  Aà$•å‘  à´å0 •åAà €à å4@•å00•åD åÀ áDå AàÁ  áÄ á DàÂ á @à(•å‘  àÃ á CàÂ á @àT å´Àå<@å8å Tá  
+Ì á LàÁ  áTå`€à á å0•å Rá  :   ëı¼ú÷ •å ÑçèŸå‘  à å…â0‘å  á Vá  :   ëı¼ú÷ ‘å Ñç€ ã @à\ å…â0‘å  á Vá  :   ëı¼ú÷ ‘å Ñç€ ã @à„Ÿå’ àå €à@x á\ åpŸå‘  àå  Aà á`!Ÿå’à @à@h á\ åPŸå‘  àå €à@8 á  WãW  ª p ã  VãP  ª ` ã  SãI  ª 0 ã  ã„àt â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àt â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àt â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àt â å Qá  :   ëı¼ú÷  å €àÿ ãÿâ Àå ã@„à ãÀŒà å ã0€à` á0å8å Táÿÿ, å ã €àD å ã0€à, åD0åAÿÿêhÿÿÿ  éf X  Ò¶  ¢Å ÿ Sã´ÿÿÚÿ0 ã²ÿÿêÿ Vã­ÿÿÚÿ` ã«ÿÿêÿ Wã¦ÿÿÚÿp ã¤ÿÿê   ëı¼ú÷ Qã$ÿÿ40åL@å4 å$å PáEşÿ
+ ˜å4åà ˜å0˜å Qáµ  Š Bà0Cà @˜å  Sã   
+@„à å”0åŒ@å4 •åLå  Aà$•å‘  à´å0 •åAà €à  å40•åL åÀ áLå AàÁ  áÃ á CàÂ á @à(•å‘  à´å0 •åAàÀ€à<@å8å Táy  
+ á  å0•å Rá  :   ëı¼ú÷ •å Ñç(Ÿå‘  à å…â0‘å  á \á  :   ëı¼ú÷ ‘å Ñç€ ã @àd å…â0‘å  á \á  :   ëı¼ú÷ ‘å Ñç€ ã @àÄŸå’ àå €à@x ád å°Ÿå‘  àå  Aà á !Ÿå’à @à@h ád åŸå‘  àå €à@8 á  WãP  ª p ã  VãI  ª ` ã  SãB  ª 0 ã  ã„àŒ â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àŒ â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àŒ â å Qá  :   ëı¼ú÷  åÿ â Àç ã„àŒ â å Qá  :   ëı¼ú÷  å €àÿ ãÿâ Àå ã@„à  å ã`€à ãÀŒà `å8å Tá…ÿÿ4 å ã0€àL å ã €à40åL åJÿÿêÿ Sã»ÿÿÚÿ0 ã¹ÿÿêÿ Vã´ÿÿÚÿ` ã²ÿÿêÿ Wã­ÿÿÚÿp ã«ÿÿê   ëı¼ú÷0 á   ë¯üÿêşÿÿê  éf X  Ò¶  ¢Å B˜üÿÿ¿ $runtime.panicindex   øüÿÿ¿ $runtime.panicindex   Øüÿÿ¿ $runtime.panicindex   ¨	üÿÿ¿ $runtime.panicindex   €
+üÿÿ¿ $runtime.panicindex   Ø
+üÿÿ¿ $runtime.panicindex   °üÿÿ¿ $runtime.panicindex   ˜üÿÿ¿ $runtime.panicslice   ˆüÿÿ¿ $runtime.panicindex   èüÿÿ¿ $runtime.panicindex   Èüÿÿ¿ $runtime.panicindex   ˜üÿÿ¿ $runtime.panicindex   ğüÿÿ¿ $runtime.panicindex   Èüÿÿ¿ $runtime.panicindex    üÿÿ¿ $runtime.panicindex   Øüÿÿ¿ $runtime.panicslice   ˜üÿÿ¿ $runtime.panicindex   øüÿÿ¿ $runtime.panicindex   Ø üÿÿ¿ $runtime.panicindex   ¨#üÿÿ¿ $runtime.panicindex   €$üÿÿ¿ $runtime.panicindex   Ø$üÿÿ¿ $runtime.panicindex   °%üÿÿ¿ $runtime.panicindex    (üÿÿ¿ $runtime.panicslice   ˆ,üÿÿ¿ $runtime.panicindex   è,üÿÿ¿ $runtime.panicindex   È-üÿÿ¿ $runtime.panicindex   ˜0üÿÿ¿ $runtime.panicindex   ğ0üÿÿ¿ $runtime.panicindex   È1üÿÿ¿ $runtime.panicindex    2üÿÿ¿ $runtime.panicindex   Ø4üÿÿ¿ $runtime.panicslice   ğ4üÿÿ¿ 0runtime.morestack_noctxt   H¨  ¦"".autotmp_0052  type.int "".autotmp_0051  type.int "".autotmp_0050  type.int "".autotmp_0049  type.int "".autotmp_0048  type.int "".autotmp_0047  type.int "".autotmp_0046  type.int "".autotmp_0045  type.int "".autotmp_0044  type.int "".autotmp_0043  type.int "".autotmp_0042  type.int "".autotmp_0041  type.int "".autotmp_0040  type.int "".autotmp_0039  type.int "".autotmp_0038  type.int "".autotmp_0037  type.int "".autotmp_0036  type.int "".autotmp_0035  type.int "".autotmp_0034  type.int "".autotmp_0033  type.int "".autotmp_0032  type.int "".autotmp_0031  type.int "".autotmp_0030  type.int "".autotmp_0029  type.int "".autotmp_0028  type.int "".autotmp_0027  type.int "".autotmp_0026  type.int "".autotmp_0025  type.int "".autotmp_0024  type.int "".autotmp_0023  type.int "".autotmp_0022  type.int "".autotmp_0021  type.int "".autotmp_0020  type.int "".autotmp_0019  type.int "".autotmp_0018  type.int "".autotmp_0017  type.int "".autotmp_0016  type.int "".autotmp_0015  type.int "".autotmp_0014  type.int "".autotmp_0013  type.int "".autotmp_0011  type.int "".autotmp_0010  type.int "".autotmp_0008  type.int "".autotmp_0007  type.int "".autotmp_0005  type.int "".autotmp_0003  type.int "".autotmp_0002  type.int "".autotmp_0001  type.int "".autotmp_0000  type.int "".cb1 gtype.int32 "".yy1 type.int32 
+"".yi ïtype.int "".dpix type.[]uint8 
+"".sy —type.int "".y Çtype.int "".cb1 wtype.int32 "".yy1 Ÿtype.int32 "".ciBase ‡type.int 
+"".yi ÿtype.int "".dpix Gtype.[]uint8 
+"".sy §type.int "".y ×type.int "".cb1 otype.int32 "".yy1 —type.int32 "".ciBase type.int 
+"".yi ÷type.int "".dpix /type.[]uint8 
+"".sy ¯type.int "".y Ïtype.int "".cb1 type.int32 "".yy1 §type.int32 
+"".yi ‡type.int "".dpix _type.[]uint8 
+"".sy Ÿtype.int "".y ßtype.int 
+"".y1 çtype.int 
+"".x1 ¿type.int 
+"".x0 ·type.int 
+"".ok @type.bool 
+"".sp 0 type.image.Point "".src ("type.*image.YCbCr "".r (type.image.Rectangle "".dst   type.*image.RGBA °Ğ Ö Ò" 
+	
+
+7	¸ƒ#H
+
+
+9		6%æ›
+
+
+9	6%J
+
+
+7		4#  Sƒ TgclocalsÂ·c54032869eda429ddbb73b99ea2b2744 TgclocalsÂ·5f32766c99d383f833fae93d4e4d71d1   /usr/local/Cellar/go/1.5rc1/libexec/src/image/internal/imageutil/impl.goş"".init  à  àšå ]á  šà-åT°Ÿå  Ûå  Pã  
+D°Ÿå  Ûå Pã   ğä   ëı¼ú÷  ã$°Ÿå  Ëå   ë  ã°Ÿå  Ëåğä0 á   ëåÿÿêşÿÿê    hüÿÿ¿ "runtime.throwinit   üÿÿ¿ image.init   Àüÿÿ¿ 0runtime.morestack_noctxt   Ø  "".initdoneÂ·        
+  Š 
+  TgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb TgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb   /usr/local/Cellar/go/1.5rc1/libexec/src/image/internal/imageutil/impl.goşTgclocalsÂ·5f32766c99d383f833fae93d4e4d71d1              şTgclocalsÂ·c54032869eda429ddbb73b99ea2b2744      	   !    şTgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb           şTgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb           ş0"".initdoneÂ·  type.uint8   ş"".DrawYCbCrÂ·f          "".DrawYCbCr   ş"".initÂ·f          "".init   ş"runtime.gcbits.01    ş.go.string.hdr."[]uint8"             &go.string."[]uint8"   ş&go.string."[]uint8"   []uint8  ştype.[]uint8 X  X      ß~.8                                runtime.algarray   (  "runtime.gcbits.01   0  .go.string.hdr."[]uint8"   @  *go.weak.type.*[]uint8   H  "runtime.zerovalue   P  type.uint8   ş6go.typelink.[]uint8	[]uint8          type.[]uint8   ş.go.string.hdr."runtime"             &go.string."runtime"   ş&go.string."runtime"   runtime  ş,go.importpath.runtime.             &go.string."runtime"   ş*go.string.hdr."image"             "go.string."image"   ş"go.string."image"   image  ş(go.importpath.image.             "go.string."image"   ş"runtime.zerovalue      ÿÿgo13ld
